@@ -19,7 +19,7 @@ class Node:
         '''
         Parameters:
             value -- value of node
-        Returns: 
+        Returns:
             None
         '''
         self.value = value
@@ -143,6 +143,7 @@ def prepare_data(data_path):
     return sorted_data, sorted_reduced_data, freq_sum
 
 
+# inspired by Chris Bourke from video - https://www.youtube.com/watch?v=CTUTPSXyBO8
 def build_tree(root_table, reduced_data):
     '''
     Parameters:
@@ -156,18 +157,18 @@ def build_tree(root_table, reduced_data):
     stack = [(root_node, 1, len(root_table) - 1)]
 
     while stack:
-        node, row, col = stack.pop()
-        root_index = root_table[row][col]
+        node, i, j = stack.pop()
+        l = root_table[i][j]
 
-        if root_index < col:
+        if l < j:
             node.right = Node(
-                reduced_data[root_table[root_index + 1][col] - 1][1])
-            stack.append((node.right, root_index + 1, col))
+                reduced_data[root_table[l + 1][j] - 1][1])
+            stack.append((node.right, l + 1, j))
 
-        if row < root_index:
+        if i < l:
             node.left = Node(
-                reduced_data[root_table[row][root_index - 1] - 1][1])
-            stack.append((node.left, row, root_index - 1))
+                reduced_data[root_table[i][l - 1] - 1][1])
+            stack.append((node.left, i, l - 1))
 
     return root_node
 
