@@ -11,7 +11,17 @@ __author__ = 'Juraj Lapcak'
 
 
 class Node:
+    '''
+    Classic interpretation of Binary tree node. Where node has two childs: left and right node.
+    '''
+
     def __init__(self, value: str):
+        '''
+        Parameters:
+            value -- value of node
+        Returns: 
+            None
+        '''
         self.value = value
         self.left = None
         self.right = None
@@ -32,7 +42,7 @@ def optimal_bst(p_table, q_table, n):
     # page 402
     e_table = [[None for _ in range(n + 1)] for _ in range(n + 2)]
     w_table = [[None for _ in range(n + 1)] for _ in range(n + 2)]
-    root_table = [[None for _ in range(n + 1)] for _ in range(n + 2)]
+    root_table = [[None for _ in range(n + 1)] for _ in range(n + 1)]
 
     # + 2 because python range function indexes in range <i, n)
     for i in range(1, n + 2):
@@ -143,7 +153,7 @@ def build_tree(root_table, reduced_data):
     '''
     root_index = root_table[1][-1]
     root_node = Node(reduced_data[root_index - 1][1])
-    stack = [(root_node, 1, len(root_table) - 2)]
+    stack = [(root_node, 1, len(root_table) - 1)]
 
     while stack:
         node, row, col = stack.pop()
