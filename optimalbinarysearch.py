@@ -9,15 +9,12 @@ This script was implemented as a solution to assigment on FEI STU course I-ADS A
 
 __author__ = 'Juraj Lapcak'
 
-import sys
-from binarytree import Node
 
-
-# class Node:
-#     def __init__(self, value: str):
-#         self.value = value
-#         self.left = None
-#         self.right = None
+class Node:
+    def __init__(self, value: str):
+        self.value = value
+        self.left = None
+        self.right = None
 
 
 def optimal_bst(p_table, q_table, n):
@@ -221,10 +218,3 @@ if __name__ == "__main__":
             break
         comparisons_cnt = pocet_porovnani(find_word, root)
         print(f'\nNumber of comparisons: {comparisons_cnt}.\n')
-
-    original_stdout = sys.stdout
-    with open('tree1.txt', 'w') as f:
-        sys.stdout = f
-        print()
-        print(root)
-        sys.stdout = original_stdout
